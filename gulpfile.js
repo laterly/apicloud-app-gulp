@@ -47,11 +47,18 @@ gulp.task('js',function(){
 });
 
 gulp.task('css',function(){
-	let process=gulp.src('./src/css/**/')
+	let process=gulp.src(['./src/css/**/*.css','./src/css/**/*.ttf'])
         .pipe(changed('./css'))
     if(getMode())
         process=process.pipe(css({rebase:false}));
 	return process.pipe(gulp.dest('./css'));
+});
+
+gulp.task("ttf", function() {
+  let process = gulp
+    .src([ "./src/css/**/*.ttf"])
+    .pipe(changed("./css"));
+  return process.pipe(gulp.dest("./css"));
 });
 
 let htmlProcess=function () {
@@ -72,7 +79,7 @@ let htmlProcess=function () {
 	return process.pipe(gulp.dest('./html'));
 };
 
-gulp.task('htmlAll',['js','css'],htmlProcess);
+gulp.task("htmlAll", ["js", "css", "ttf"], htmlProcess);
 
 gulp.task('htmlJs',['js'],htmlProcess);
 
@@ -111,12 +118,14 @@ gulp.task('cleanExport',function(){
 })
 gulp.task('export',['cleanExport'],function(){
     gulp.src([
-        'css/*.css',
+        'css/*',
+        'css/pages/*',
         'html/**/*.html',
         //'icon/**/*',
         'image/**/*',
         //'launch/**/*',
-        'script/*.js',
+        'script/*',
+        'script/pages/*',
         'config.xml',
         'index.html'],{base:'.'})
         .pipe(gulp.dest(folder));
