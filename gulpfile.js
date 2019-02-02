@@ -61,6 +61,13 @@ gulp.task("ttf", function() {
   return process.pipe(gulp.dest("./css"));
 });
 
+gulp.task("image", function() {
+  let process = gulp
+    .src([ "./src/image/**/*"])
+    .pipe(changed("./image"));
+  return process.pipe(gulp.dest("./image"));
+});
+
 let htmlProcess=function () {
     let process=gulp.src('./src/html/*.html')
 		.pipe(embed({
@@ -79,7 +86,7 @@ let htmlProcess=function () {
 	return process.pipe(gulp.dest('./html'));
 };
 
-gulp.task("htmlAll", ["js", "css", "ttf"], htmlProcess);
+gulp.task("htmlAll", ["js", "css", "ttf", "image"], htmlProcess);
 
 gulp.task('htmlJs',['js'],htmlProcess);
 
