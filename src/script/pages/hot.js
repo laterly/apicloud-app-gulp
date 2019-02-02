@@ -1,14 +1,14 @@
-const mainData = $api.getStorage('hotData') || '';
+let isRequest = false;
 apiready = function () {
     let topic = document.querySelector('#topic');
     api.showProgress({
         title: '请稍后...',
         text: ''
     });
-    if (!mainData) {
+    if (!isRequest) {
         app.http.getJson('/api/topics/hot.json').then((res) => {
             let data = res;
-            $api.setStorage('hotData', data);
+            isRequest = true;
             topic.innerHTML = htmlData(data);
             api.hideProgress();
         }).catch((err) => {
@@ -18,10 +18,11 @@ apiready = function () {
             api.hideProgress();
             app.http.error(err);
         })
-    } else {
-        api.hideProgress();
-        topic.innerHTML = htmlData(mainData);
     }
+    // else {
+    //     api.hideProgress();
+    //     topic.innerHTML = htmlData(mainData);
+    // }
 };
 
 function htmlData(data) {
@@ -30,7 +31,7 @@ function htmlData(data) {
         html += `<li class="aui-list-item aui-list-item-middle">
                         <div class="aui-media-list-item-inner">
                             <div class="aui-list-item-media">
-                                <img src="${item.node.avatar_normal}" class="aui-img-round aui-list-img-sm">
+                                <img src="${item.member.avatar_normal}" class="aui-img-round aui-list-img-sm">
                             </div>
                             <div class="aui-list-item-inner aui-list-item-arrow">
                                 <div class="aui-list-item-text">
