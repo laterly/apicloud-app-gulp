@@ -1,4 +1,4 @@
-## apicloud+framework 7+gulp构建app
+## apicloud+aui+gulp构建app
 
 * 基于APICloud提供的“云API”和“端API调用底层app
 * 打包生成的app用于apicloud进行编译成app
