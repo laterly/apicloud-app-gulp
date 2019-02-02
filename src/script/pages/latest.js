@@ -1,4 +1,4 @@
-const mainData = $api.getStorage('hotData') || '';
+const mainData = $api.getStorage('latestData') || '';
 apiready = function () {
     let topic = document.querySelector('#topic');
     api.showProgress({
@@ -6,9 +6,9 @@ apiready = function () {
         text: ''
     });
     if (!mainData) {
-        app.http.getJson('/api/topics/hot.json').then((res) => {
+        app.http.getJson('/api/topics/latest.json').then((res) => {
             let data = res;
-            $api.setStorage('hotData', data);
+            $api.setStorage('latestData', data);
             topic.innerHTML = htmlData(data);
             api.hideProgress();
         }).catch((err) => {
