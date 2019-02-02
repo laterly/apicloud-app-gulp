@@ -47,7 +47,7 @@ gulp.task('js',function(){
 });
 
 gulp.task('css',function(){
-	let process=gulp.src('./src/css/**/*.css')
+	let process=gulp.src('./src/css/**/')
         .pipe(changed('./css'))
     if(getMode())
         process=process.pipe(css({rebase:false}));
@@ -100,7 +100,7 @@ gulp.task('webserver', function () {
 
 //开始执行
 if (isServer)
-    gulp.task('default', ['htmlAll', 'webserver']);
+    gulp.task('default', ['webserver']);
 else
     gulp.task('default', ['htmlAll']);
 

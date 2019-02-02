@@ -1,35 +1,118 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>终端下单</title>
-<body>
-</body>
-<div>
-    11111222
-</div>
-<script src="script/api.js"></script>
-<script>
-var accountId=$api.getStorage('accountId');
-accountId=true;
-window.location.href="html/main.html";
-    apiready = function() {
-        api.setStatusBarStyle({
-            style: 'dark'
-        });
-        if(accountId){
-            api.openFrame({
-                name: 'main',
-                url: 'html/main.html',
-            });
-        }else{
-            api.openFrame({
-                name: 'login',
-                url: 'html/login.html',
-            });
+    <link rel="stylesheet" href="css/api.css" />
+    <link rel="stylesheet" href="css/aui.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <title>终端App首页</title>
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
         }
+
+        .wrap {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+        }
+
+        .flex-1 {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+        }
+
+        .aui-bar-nav .aui-btn.aui-btn-outlined {
+            border: none;
+        }
+    </style>
+
+<body class="wrap">
+    <header class="aui-bar aui-bar-nav">
+        <div class="aui-title">v2ex</div>
+        <a class="aui-pull-right aui-btn aui-btn-outlined">
+            <span class="aui-iconfont aui-icon-search"></span>
+        </a>
+    </header>
+    <section class="flex-1">
+        <!--view层-->
+    </section>
+    <footer class="aui-bar aui-bar-tab" id="footer">
+        <div class="aui-bar-tab-item aui-active" tapmode to-html="main.html">
+            <i class="aui-iconfont aui-icon-home"></i>
+            <div class="aui-bar-tab-label">首页</div>
+        </div>
+         <div class="aui-bar-tab-item" tapmode>
+            <i class="aui-iconfont aui-icon-comment"></i>
+            <div class="aui-bar-tab-label">最新</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode to-html="hot.html">
+            <i class="aui-iconfont aui-icon-flag"></i>
+            <div class="aui-bar-tab-label">最热</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode>
+            <div class="aui-dot"></div>
+            <i class="aui-iconfont aui-icon-my"></i>
+            <div class="aui-bar-tab-label">我的</div>
+        </div>
+    </footer>
+</body>
+<script src="script/api.js"></script>
+<script src="script/utils.js"></script>
+<script type="text/javascript">
+    apiready = function () {
+        var header = $api.dom('header'); // 获取 header 标签元素
+        var footer = $api.dom('footer'); // 获取 footer 标签元素
+        var headerH = $api.fixStatusBar(header);
+        var footerH = $api.fixTabBar(footer);
+        api.openFrame({
+            name: 'main',
+            url: 'html/main.html',
+            bounces: true,
+            rect: { // 推荐使用Margin布局，用于适配屏幕的动态变化
+                marginTop: headerH, // main页面距离win顶部的高度
+                marginBottom: footerH, // main页面距离win底部的高度
+                w: 'auto' // main页面的宽度 自适应屏幕宽度
+            }
+        });
+        var footerTab = $api.domAll('.aui-bar-tab-item');
+        for (let i = 0; i < footerTab.length; i++) {
+            footerTab[i].onclick = function () {
+                let link = $api.attr(this, 'to-html');
+                console.log('link', link);
+                for (let j = 0; j < footerTab.length; j++) {
+                    $api.removeCls(footerTab[j], 'aui-active');
+                }
+                api.openFrame({
+                    name: `main${link}`,
+                    url: `html/${link}`,
+                    bounces: true,
+                    rect: { // 推荐使用Margin布局，用于适配屏幕的动态变化
+                        marginTop: headerH, // main页面距离win顶部的高度
+                        marginBottom: footerH, // main页面距离win底部的高度
+                        w: 'auto' // main页面的宽度 自适应屏幕宽度
+                    },
+                    pageParam: {
+
+                    },
+                    bgColor:'#f5f5f5'
+                    // animation: {
+                    //     translation: {
+                    //         x: 0,
+                    //     },
+                    //     //autoreverse:true,
+                    //     duration: 100
+                    // }
+                });
+                $api.addCls(footerTab[i], 'aui-active');
+            }
+        }
+
     };
 </script>
+
 </html>

@@ -588,17 +588,17 @@
 
 })(window);
 
-(function(doc, win) {
-  var docEl = doc.documentElement,
-      resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-      percent=docEl.getAttribute('data-rem')||100
-      recalc = function() {
-          var clientWidth = docEl.clientWidth;
-          if (!clientWidth) return;
-          var size=100 * (clientWidth / 1080);
-          docEl.style.fontSize = percent * (clientWidth / 1080) + 'px';
-      };
-  if (!doc.addEventListener) return;
-  win.addEventListener(resizeEvt, recalc, false);
-  doc.addEventListener('DOMContentLoaded', recalc, false);
-})(document, window);
+// (function(doc, win) {
+//   var docEl = doc.documentElement,
+//       resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+//       percent=docEl.getAttribute('data-rem')||100
+//       recalc = function() {
+//           var clientWidth = docEl.clientWidth;
+//           if (!clientWidth) return;
+//           var size=100 * (clientWidth / 1080);
+//           docEl.style.fontSize = percent * (clientWidth / 1080) + 'px';
+//       };
+//   if (!doc.addEventListener) return;
+//   win.addEventListener(resizeEvt, recalc, false);
+//   doc.addEventListener('DOMContentLoaded', recalc, false);
+// })(document, window);

@@ -2,7 +2,7 @@
 
 * 基于APICloud提供的“云API”和“端API调用底层app
 * 打包生成的app用于apicloud进行编译成app
-* 基于aui构建h5的界面
+* 基于aui构建h5的界面,html默认定义的尺寸为20px，那么1rem=20px,1px=0.05rem;
 
 ##目录作用
 1.开发主目录src
@@ -26,7 +26,7 @@
 
 ```bash
 1.安装项目依赖:npm install
-2.开发环境打包:npm run dev
+2.开发环境打包,监听watch页面变化:npm run dev
 3.开启一个服务器:npm run server
 4.生产环境的打包:npm run prod
 5.导出成一个app:npm run export
