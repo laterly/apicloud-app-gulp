@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>终端下单</title>
+<body>
+</body>
+<div>
+    11111222
+</div>
+<script src="script/api.js"></script>
+<script>
+var accountId=$api.getStorage('accountId');
+accountId=true;
+window.location.href="html/main.html";
+    apiready = function() {
+        api.setStatusBarStyle({
+            style: 'dark'
+        });
+        if(accountId){
+            api.openFrame({
+                name: 'main',
+                url: 'html/main.html',
+            });
+        }else{
+            api.openFrame({
+                name: 'login',
+                url: 'html/login.html',
+            });
+        }
+    };
+</script>
+</html>

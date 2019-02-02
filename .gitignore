@@ -1,0 +1,5 @@
+/node_modules/
+/html/
+/css/
+/script/
+package-lock.json

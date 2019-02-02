@@ -1,0 +1,36 @@
+{
+  "name": "apicloud-polyfill-sample",
+  "version": "0.0.1",
+  "description": "apicloud-polyfill,以模块化方式开发 APICloud App!",
+  "main": "index.js",
+  "repository": "http://www.apicloud.com",
+  "scripts": {
+    "server": "npx gulp --server",
+    "dev": "npx gulp watch",
+    "prod": "npx gulp clean&&npx gulp",
+    "clean": "npx gulp clean",
+    "export": "npx gulp export"
+  },
+  "author": "APICloud",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp-connect": "^5.7.0"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-remove-strict-mode": "0.0.2",
+    "babel-preset-latest": "^6.24.1",
+    "falafel": "^2.1.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-changed": "^3.2.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-inline-source": "^3.2.0",
+    "gulp-remove-use-strict": "0.0.2",
+    "gulp-uglify": "^3.0.1",
+    "uglifyjs": "^2.4.11"
+  }
+}
