@@ -2,7 +2,7 @@
 
 * 基于APICloud提供的“云API”和“端API调用底层app
 * 打包生成的app用于apicloud进行编译成app
-* 基于framework 7构建h5的界面
+* 基于aui构建h5的界面
 
 ##目录作用
 1.开发主目录src
